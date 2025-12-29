@@ -1,12 +1,13 @@
 #!/bin/sh
+# Copyright (C) The libssh2 project and its contributors.
+# SPDX-License-Identifier: BSD-3-Clause
 #
 #       Installation of the header files in the OS/400 library.
 #
 
-SCRIPTDIR=`dirname "${0}"`
+SCRIPTDIR=$(dirname "${0}")
 . "${SCRIPTDIR}/initscript.sh"
-cd "${TOPDIR}/include"
-
+cd "${TOPDIR}/include" || exit 1
 
 #       Create the OS/400 source program file for the header files.
 
@@ -18,7 +19,6 @@ then    CMD="CRTSRCPF FILE(${TARGETLIB}/H) RCDLEN(112)"
         system "${CMD}"
 fi
 
-
 #       Create the IFS directory for the header files.
 
 IFSINCLUDE="${IFSDIR}/include"
@@ -26,7 +26,6 @@ IFSINCLUDE="${IFSDIR}/include"
 if action_needed "${IFSINCLUDE}"
 then    mkdir -p "${IFSINCLUDE}"
 fi
-
 
 copy_hfile()
 
@@ -45,11 +44,11 @@ copy_hfile()
 #       Copy the header files.
 
 for HFILE in *.h "${TOPDIR}/os400/libssh2_ccsid.h"
-do      DEST="${SRCPF}/`db2_name \"${HFILE}\"`.MBR"
+do      DEST="${SRCPF}/$(db2_name "${HFILE}").MBR"
 
         if action_needed "${DEST}" "${HFILE}"
         then    copy_hfile "${DEST}" "${HFILE}"
-                IFSDEST="${IFSINCLUDE}/`basename \"${HFILE}\"`"
+                IFSDEST="${IFSINCLUDE}/$(basename "${HFILE}")"
                 rm -f "${IFSDEST}"
                 ln -s "${DEST}" "${IFSDEST}"
         fi

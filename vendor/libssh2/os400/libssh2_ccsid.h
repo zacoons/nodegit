@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 Patrick Monnerat, D+H <patrick.monnerat@dh.com>
+ * Copyright (C) Patrick Monnerat <patrick@monnerat.net>
  * All rights reserved.
  *
  * Redistribution and use in source and binary forms,
@@ -34,6 +34,8 @@
  * NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE
  * USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
  * OF SUCH DAMAGE.
+ *
+ * SPDX-License-Identifier: BSD-3-Clause
  */
 
 /* CCSID conversion support. */
@@ -44,7 +46,6 @@
 #include "libssh2.h"
 
 typedef struct _libssh2_string_cache    libssh2_string_cache;
-
 
 LIBSSH2_API char *
 libssh2_from_ccsid(LIBSSH2_SESSION *session, libssh2_string_cache **cache,
