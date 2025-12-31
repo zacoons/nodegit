@@ -16,7 +16,7 @@ const pipeline = promisify(stream.pipeline);
 
 import packageJson from '../package.json' with { type: "json" };
 
-const OPENSSL_VERSION = "3.0.18";
+const OPENSSL_VERSION = "3.6.0";
 const win32BatPath = path.join(import.meta.dirname, "build-openssl.bat");
 const vendorPath = path.resolve(import.meta.dirname, "..", "vendor");
 const opensslPatchPath = path.join(vendorPath, "patches", "openssl");
